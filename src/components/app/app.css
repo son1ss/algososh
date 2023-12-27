@@ -30,3 +30,23 @@
   align-items: center;
   gap: 5px;
 }
+
+.input-form {
+  display: flex;
+  gap: 12px
+}
+
+.demo-elements {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap:48px
+}
+
+.circles {
+  display: flex;
+  gap: 40px 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 950px;
+}
