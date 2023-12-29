@@ -83,6 +83,7 @@ export const ListPage: React.FC = () => {
           />
           <Input
             isLimitText
+            min={0}
             max={list.length - 1}
             type="number"
             placeholder="Введите индекс"

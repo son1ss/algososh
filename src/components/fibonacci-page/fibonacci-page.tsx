@@ -33,6 +33,7 @@ export const FibonacciPage: React.FC = () => {
           <Input
             isLimitText
             type="number"
+            min={0}
             max={19}
             value={value}
             onChange={(e) => setValue(Number(e.currentTarget.value))}
