@@ -25,7 +25,8 @@ export const StringComponent: React.FC = () => {
     });
     const arr: string[] = string.split('');
     setData((prev) => ({ ...prev, array: arr }));
-    for (let firstIndex = 0; firstIndex <= (arr.length + 1) / 2; firstIndex++) {
+    for (let firstIndex = 0; firstIndex < arr.length / 2; firstIndex++) {
+      console.log(firstIndex);
       await delay(SHORT_DELAY_IN_MS);
       const secondIndex = string.length - firstIndex - 1;
       setData((prev) => ({ ...prev, changing: [firstIndex, secondIndex] }));
@@ -55,7 +56,7 @@ export const StringComponent: React.FC = () => {
           className="input-form"
         >
           <Input isLimitText maxLength={11} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
-          <Button type="submit" text="Рассчитать" isLoader={data.loading} />
+          <Button type="submit" disabled={!value.length} text="Рассчитать" isLoader={data.loading} />
         </form>
         <div className="circles">
           {data.array.map((item, index) => (

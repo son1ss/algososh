@@ -69,8 +69,18 @@ export const ListPage: React.FC = () => {
           <Input isLimitText maxLength={4} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
           <Button text="Добавить в head" isLoader={loading.addingHead} onClick={handleAddToHead} />
           <Button text="Добавить в tail" isLoader={loading.addingTail} onClick={handleAddToTail} />
-          <Button text="Удалить из head" isLoader={loading.deletingHead} onClick={handleDeleteFromHead} />
-          <Button text="Удалить из tail" isLoader={loading.deletingTail} onClick={handleDeleteFromTail} />
+          <Button
+            text="Удалить из head"
+            isLoader={loading.deletingHead}
+            onClick={handleDeleteFromHead}
+            disabled={!list.length}
+          />
+          <Button
+            text="Удалить из tail"
+            isLoader={loading.deletingTail}
+            onClick={handleDeleteFromTail}
+            disabled={!list.length}
+          />
           <Input
             isLimitText
             max={list.length - 1}
@@ -90,6 +100,7 @@ export const ListPage: React.FC = () => {
             extraClass="grid-2"
             isLoader={loading.deletingIndex}
             onClick={handleDeleteAtIndex}
+            disabled={!list.length}
           />
         </form>
         <div className="circles">
