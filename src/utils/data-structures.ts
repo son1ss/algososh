@@ -141,6 +141,7 @@ export class LinkedList<T> {
     const node = new Node(value, this.head);
     this.head = node;
     this.size++;
+    console.log(this.head);
   }
 
   deleteHead() {
@@ -185,10 +186,16 @@ export class LinkedList<T> {
   list = () => {
     const arr: T[] = [];
     let curr = this.head;
+    curr && arr.push(curr.value);
     while (curr?.next) {
-      arr.push(curr.value);
       curr = curr.next;
+      arr.push(curr.value);
     }
     return arr;
+  };
+
+  clear = () => {
+    this.head = null;
+    this.size = 0;
   };
 }

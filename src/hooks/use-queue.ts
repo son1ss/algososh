@@ -3,21 +3,7 @@ import { Queue } from '../utils/data-structures';
 import { delay } from '../utils/utils';
 import { SHORT_DELAY_IN_MS } from '../constants/delays';
 
-type ReturnValue<T> = [
-  {
-    array: (T | null)[];
-    head: number;
-    tail: number;
-    changing: number;
-  },
-  {
-    enqueue: (item: T) => Promise<void>;
-    dequeue: () => Promise<void>;
-    clear: () => void;
-  }
-];
-
-export default function useQueue<T>(queue: Queue<T>): ReturnValue<T> {
+export default function useQueue<T>(queue: Queue<T>) {
   const [container, setContainer] = useState({
     array: queue.list(),
     head: queue.getHead(),
@@ -50,5 +36,5 @@ export default function useQueue<T>(queue: Queue<T>): ReturnValue<T> {
       changing: -1,
     });
   };
-  return [container, { enqueue, dequeue, clear }];
+  return [container, { enqueue, dequeue, clear }] as const;
 }

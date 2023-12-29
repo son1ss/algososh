@@ -3,19 +3,7 @@ import { Stack } from '../utils/data-structures';
 import { delay } from '../utils/utils';
 import { SHORT_DELAY_IN_MS } from '../constants/delays';
 
-type ReturnValue<T> = [
-  {
-    array: T[];
-    changing: number;
-  },
-  {
-    push: (item: T) => Promise<void>;
-    pop: () => Promise<void>;
-    clear: () => void;
-  }
-];
-
-export default function useStack<T>(stack: Stack<T>): ReturnValue<T> {
+export default function useStack<T>(stack: Stack<T>) {
   const [container, setContainer] = useState({ array: stack.list(), changing: -1 });
   const setChanging = (index: number) => setContainer((prev) => ({ ...prev, changing: index }));
   const push = async (item: T) => {
@@ -35,5 +23,5 @@ export default function useStack<T>(stack: Stack<T>): ReturnValue<T> {
     setContainer({ changing: -1, array: stack.list() });
   };
 
-  return [container, { push, pop, clear }];
+  return [container, { push, pop, clear }] as const;
 }
