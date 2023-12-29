@@ -59,7 +59,6 @@ export default function useList<T>(list: LinkedList<T>) {
       ...prev,
     ]);
     list.prepend(item);
-    console.log(list.list());
     await delay(SHORT_DELAY_IN_MS);
     const array = list.list().map(toFormattedLinkedList);
     setContainer(getModified(array, 0));

@@ -102,7 +102,7 @@ export const ListPage: React.FC = () => {
                 index={index}
                 key={index}
               />
-              {index < arr.length - 1 && <ArrowIcon fill={'#0032FF'} />}
+              {index < arr.length - 1 && <ArrowIcon key={`${index}arrow`} fill={'#0032FF'} />}
             </>
           ))}
         </div>

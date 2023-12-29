@@ -26,7 +26,6 @@ export const StringComponent: React.FC = () => {
     const arr: string[] = string.split('');
     setData((prev) => ({ ...prev, array: arr }));
     for (let firstIndex = 0; firstIndex <= (arr.length + 1) / 2; firstIndex++) {
-      console.log(firstIndex, (arr.length + 1) / 2);
       await delay(SHORT_DELAY_IN_MS);
       const secondIndex = string.length - firstIndex - 1;
       setData((prev) => ({ ...prev, changing: [firstIndex, secondIndex] }));

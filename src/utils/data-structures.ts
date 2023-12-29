@@ -141,7 +141,6 @@ export class LinkedList<T> {
     const node = new Node(value, this.head);
     this.head = node;
     this.size++;
-    console.log(this.head);
   }
 
   deleteHead() {
