@@ -27,7 +27,7 @@ export const QueuePage: React.FC = () => {
           className="input-form"
         >
           <Input isLimitText maxLength={4} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
-          <Button type="submit" text="Добавить" isLoader={loading.adding} />
+          <Button type="submit" disabled={!value.length} text="Добавить" isLoader={loading.adding} />
           <Button
             onClick={() => {
               setLoading((prev) => ({ ...prev, deleting: true }));

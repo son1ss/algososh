@@ -25,7 +25,7 @@ export const StackPage: React.FC = () => {
           className="input-form"
         >
           <Input isLimitText maxLength={4} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
-          <Button type="submit" text="Добавить" isLoader={loading.adding} />
+          <Button type="submit" text="Добавить" disabled={!value.length} isLoader={loading.adding} />
           <Button
             onClick={() => {
               setLoading((prev) => ({ ...prev, deleting: true }));

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import useList, { ListNode } from '../../hooks/use-list';
 import { LinkedList } from '../../utils/data-structures';
 import { Button } from '../ui/button/button';
@@ -105,16 +105,10 @@ export const ListPage: React.FC = () => {
         </form>
         <div className="circles">
           {list.map((item, index, arr) => (
-            <>
-              <Circle
-                {...item}
-                head={getHeadOrTail(item.head)}
-                tail={getHeadOrTail(item.tail)}
-                index={index}
-                key={index}
-              />
-              {index < arr.length - 1 && <ArrowIcon key={`${index}arrow`} fill={'#0032FF'} />}
-            </>
+            <Fragment key={index}>
+              <Circle {...item} head={getHeadOrTail(item.head)} tail={getHeadOrTail(item.tail)} index={index} />
+              {index < arr.length - 1 && <ArrowIcon fill={'#0032FF'} />}
+            </Fragment>
           ))}
         </div>
       </div>
