@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { SolutionLayout } from '../ui/solution-layout/solution-layout';
 import { SHORT_DELAY_IN_MS } from '../../constants/delays';
-import { delay } from '../../utils/utils';
+import { delay, getReverseStringSteps } from '../../utils/utils';
 import { Input } from '../ui/input/input';
 import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
@@ -23,18 +23,10 @@ export const StringComponent: React.FC = () => {
       changing: [],
       changed: [],
     });
-    const arr: string[] = string.split('');
-    setData((prev) => ({ ...prev, array: arr }));
-    for (let firstIndex = 0; firstIndex < arr.length / 2; firstIndex++) {
-      console.log(firstIndex);
+    const arr = getReverseStringSteps(string);
+    for (let i = 0; i < arr.length; i++) {
+      setData((prev) => ({ ...prev, ...arr[i] }));
       await delay(SHORT_DELAY_IN_MS);
-      const secondIndex = string.length - firstIndex - 1;
-      setData((prev) => ({ ...prev, changing: [firstIndex, secondIndex] }));
-      const temp = arr[secondIndex];
-      arr[secondIndex] = arr[firstIndex];
-      arr[firstIndex] = temp;
-      await delay(SHORT_DELAY_IN_MS);
-      setData((prev) => ({ ...prev, changed: prev.changed.concat([firstIndex, secondIndex]) }));
     }
   };
 

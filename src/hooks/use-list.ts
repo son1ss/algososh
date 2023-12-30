@@ -121,5 +121,5 @@ export default function useList<T>(list: LinkedList<T>) {
     setContainer(list.list().map(toFormattedLinkedList));
   };
 
-  return [container, { append, prepend, insertAt, deleteByIndex, deleteHead, deleteTail }] as const;
+  return [container, { append, prepend, insertAt, deleteByIndex, deleteHead, deleteTail, clear }] as const;
 }

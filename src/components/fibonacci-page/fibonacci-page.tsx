@@ -3,7 +3,7 @@ import { SolutionLayout } from '../ui/solution-layout/solution-layout';
 import { Input } from '../ui/input/input';
 import { Button } from '../ui/button/button';
 import { Circle } from '../ui/circle/circle';
-import { delay, fibonacci } from '../../utils/utils';
+import { delay, getFibonacciArray } from '../../utils/utils';
 import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
 export const FibonacciPage: React.FC = () => {
@@ -11,10 +11,8 @@ export const FibonacciPage: React.FC = () => {
   const [value, setValue] = useState<number>(0);
 
   const count = async (number: number) => {
-    const arr: number[] = [];
     for (let i = 0; i <= number; i++) {
-      arr.push(fibonacci(i + 1));
-      setData((prev) => ({ ...prev, array: arr }));
+      setData((prev) => ({ ...prev, array: getFibonacciArray(i) }));
       await delay(SHORT_DELAY_IN_MS);
     }
   };
