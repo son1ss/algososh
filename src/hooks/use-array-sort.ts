@@ -4,20 +4,21 @@ import { Direction } from '../types/direction';
 import { ElementStates } from '../types/element-states';
 import { delay } from '../utils/utils';
 
-export default function useArraySort(length: number) {
-  const [array, setArray] = useState<{ index: number; state: ElementStates }[]>(() =>
-    new Array(length).fill(null).map(() => ({ index: Math.round(Math.random() * 100), state: ElementStates.Default }))
-  );
+export type ArrayState = { index: number; state: ElementStates };
 
-  const bubbleSort = async (direction: Direction) => {
-    setArray((prev) => prev.map((item) => ({ ...item, state: ElementStates.Default })));
-    for (let i = 1; i < array.length; i++) {
-      for (let j = 0; j < array.length - i; j++) {
-        setArray((prev) =>
-          prev.map((item, index) => ([j + 1, j].includes(index) ? { ...item, state: ElementStates.Changing } : item))
-        );
-        await delay(SHORT_DELAY_IN_MS);
-        setArray((prev) => {
+export const getBubbleSortSteps = (array: ArrayState[], direction: Direction): ArrayState[][] => {
+  if (array.length < 1) return [];
+  const result: ArrayState[][] = [];
+  result.push(array.map((item) => ({ ...item, state: ElementStates.Default })));
+  for (let i = 1; i < array.length; i++) {
+    for (let j = 0; j < array.length - i; j++) {
+      result.push(
+        result[result.length - 1].map((item, index) =>
+          [j + 1, j].includes(index) ? { ...item, state: ElementStates.Changing } : item
+        )
+      );
+      result.push(
+        ((prev) => {
           const arr = Array.from(prev);
           if (
             (direction === Direction.Ascending && arr[j].index > arr[j + 1].index) ||
@@ -30,26 +31,34 @@ export default function useArraySort(length: number) {
           return arr.map((item) =>
             item.state === ElementStates.Modified ? item : { ...item, state: ElementStates.Default }
           );
-        });
-      }
-      setArray((prev) =>
-        prev.map((item, index, array) =>
-          array.length - i === index ? { ...item, state: ElementStates.Modified } : item
-        )
+        })(result[result.length - 1])
       );
     }
-    setArray(([first, ...rest]) => [{ ...first, state: ElementStates.Modified }, ...rest]);
-  };
+    result.push(
+      result[result.length - 1].map((item, index, array) =>
+        array.length - i === index ? { ...item, state: ElementStates.Modified } : item
+      )
+    );
+  }
+  const [first, ...rest] = result[result.length - 1];
+  result.push([{ ...first, state: ElementStates.Modified }, ...rest]);
 
-  const selectionSort = async (direction: Direction) => {
-    setArray((prev) => prev.map((item) => ({ ...item, state: ElementStates.Default })));
-    for (let i = 0; i < array.length; i++) {
-      for (let j = i; j < array.length; j++) {
-        setArray((prev) =>
-          prev.map((item, index) => ([i, j].includes(index) ? { ...item, state: ElementStates.Changing } : item))
-        );
-        await delay(SHORT_DELAY_IN_MS);
-        setArray((prev) => {
+  return result;
+};
+
+export const getSelectionSortSteps = (array: ArrayState[], direction: Direction): ArrayState[][] => {
+  if (array.length < 1) return [];
+  const result: ArrayState[][] = [];
+  result.push(array.map((item) => ({ ...item, state: ElementStates.Default })));
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i; j < array.length; j++) {
+      result.push(
+        result[result.length - 1].map((item, index) =>
+          [i, j].includes(index) ? { ...item, state: ElementStates.Changing } : item
+        )
+      );
+      result.push(
+        ((prev) => {
           const arr = Array.from(prev);
           if (
             (direction === Direction.Ascending && arr[i].index > arr[j].index) ||
@@ -62,11 +71,36 @@ export default function useArraySort(length: number) {
           return arr.map((item) =>
             item.state === ElementStates.Modified ? item : { ...item, state: ElementStates.Default }
           );
-        });
-      }
-      setArray((prev) => prev.map((item, index) => (i === index ? { ...item, state: ElementStates.Modified } : item)));
+        })(result[result.length - 1])
+      );
     }
-    await delay(SHORT_DELAY_IN_MS);
+    result.push(
+      result[result.length - 1].map((item, index) => (i === index ? { ...item, state: ElementStates.Modified } : item))
+    );
+  }
+
+  return result;
+};
+
+export default function useArraySort(length: number) {
+  const [array, setArray] = useState<ArrayState[]>(() =>
+    new Array(length).fill(null).map(() => ({ index: Math.round(Math.random() * 100), state: ElementStates.Default }))
+  );
+
+  const bubbleSort = async (direction: Direction) => {
+    const sortStates = getBubbleSortSteps(array, direction);
+    for (let state of sortStates) {
+      setArray(state);
+      await delay(SHORT_DELAY_IN_MS);
+    }
+  };
+
+  const selectionSort = async (direction: Direction) => {
+    const sortStates = getSelectionSortSteps(array, direction);
+    for (let state of sortStates) {
+      setArray(state);
+      await delay(SHORT_DELAY_IN_MS);
+    }
   };
 
   const reset = () => {

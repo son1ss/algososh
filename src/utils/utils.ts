@@ -17,9 +17,11 @@ export const getReverseStringSteps = (string: string): StringStep[] => {
     returnValue.push({
       ...returnValue[returnValue.length - 1],
       array: array.slice(),
+    });
+    returnValue.push({
+      ...returnValue[returnValue.length - 1],
       changed: returnValue[returnValue.length - 1].changed.concat([i, secondIndex]),
     });
   }
-  console.log(returnValue.map((val) => val.changed));
   return returnValue;
 };

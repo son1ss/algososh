@@ -23,6 +23,7 @@ export const QueuePage: React.FC = () => {
             e.preventDefault();
             setLoading((prev) => ({ ...prev, adding: true }));
             enqueue(value).then(() => setLoading((prev) => ({ ...prev, adding: false })));
+            setValue('');
           }}
           className="input-form"
         >

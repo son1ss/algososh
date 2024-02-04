@@ -166,14 +166,13 @@ export class LinkedList<T> {
   deleteByIndex(index: number) {
     if (index < 0 || index > this.size) throw new Error(`Неверный индекс. [0, ${this.size}]`);
 
-    if (!this.head || index === 0) this.deleteHead();
-    else {
-      let previous = this.head;
-      while (index - 1 && previous.next && previous.next.next) {
-        previous = previous.next;
-      }
-      previous.next = previous.next!.next;
+    if (!this.head || index === 0) return this.deleteHead();
+
+    let previous = this.head;
+    for (let i = 0; i < index - 1 && previous.next && previous.next.next; i++) {
+      previous = previous.next;
     }
+    previous.next = previous.next!.next;
 
     this.size--;
   }

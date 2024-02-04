@@ -21,6 +21,7 @@ export const StackPage: React.FC = () => {
             e.preventDefault();
             setLoading((prev) => ({ ...prev, adding: true }));
             push(value).then(() => setLoading((prev) => ({ ...prev, adding: false })));
+            setValue('');
           }}
           className="input-form"
         >

@@ -8,7 +8,7 @@ import { SHORT_DELAY_IN_MS } from '../../constants/delays';
 
 export const FibonacciPage: React.FC = () => {
   const [data, setData] = useState<{ loading: boolean; array: number[] }>({ loading: false, array: [] });
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<number>();
 
   const count = async (number: number) => {
     for (let i = 0; i <= number; i++) {
@@ -33,10 +33,10 @@ export const FibonacciPage: React.FC = () => {
             type="number"
             min={0}
             max={19}
-            value={value}
+            value={value ?? ''}
             onChange={(e) => setValue(Number(e.currentTarget.value))}
           />
-          <Button type="submit" text="Рассчитать" isLoader={data.loading} />
+          <Button type="submit" text="Рассчитать" disabled={value === undefined} isLoader={data.loading} />
         </form>
         <div className="circles">
           {data.array.map((item, index) => (

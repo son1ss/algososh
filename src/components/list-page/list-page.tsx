@@ -16,7 +16,7 @@ function getHeadOrTail<T>(item?: string | Omit<ListNode<T>, 'head' | 'tail'>) {
 
 export const ListPage: React.FC = () => {
   const [value, setValue] = useState('');
-  const [indexValue, setIndexValue] = useState(0);
+  const [indexValue, setIndexValue] = useState<number>();
   const [loading, setLoading] = useState({
     addingHead: false,
     deletingHead: false,
@@ -51,14 +51,14 @@ export const ListPage: React.FC = () => {
 
   const handleAddAtIndex = () => {
     setLoading((prev) => ({ ...prev, addingIndex: true }));
-    insertAt(value, indexValue).then(() => setLoading((prev) => ({ ...prev, addingIndex: false })));
+    insertAt(value, indexValue || 0).then(() => setLoading((prev) => ({ ...prev, addingIndex: false })));
     setIndexValue(0);
     setValue('');
   };
 
   const handleDeleteAtIndex = () => {
     setLoading((prev) => ({ ...prev, deletingIndex: true }));
-    deleteByIndex(indexValue).then(() => setLoading((prev) => ({ ...prev, deletingIndex: false })));
+    deleteByIndex(indexValue || 0).then(() => setLoading((prev) => ({ ...prev, deletingIndex: false })));
     setIndexValue(0);
   };
 
@@ -66,9 +66,9 @@ export const ListPage: React.FC = () => {
     <SolutionLayout title="Связный список">
       <div className="demo-elements">
         <form className="grid-form">
-          <Input isLimitText maxLength={4} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
-          <Button text="Добавить в head" isLoader={loading.addingHead} onClick={handleAddToHead} />
-          <Button text="Добавить в tail" isLoader={loading.addingTail} onClick={handleAddToTail} />
+          <Input isLimitText id="value" maxLength={4} value={value} onChange={(e) => setValue(e.currentTarget.value)} />
+          <Button text="Добавить в head" disabled={!value} isLoader={loading.addingHead} onClick={handleAddToHead} />
+          <Button text="Добавить в tail" disabled={!value} isLoader={loading.addingTail} onClick={handleAddToTail} />
           <Button
             text="Удалить из head"
             isLoader={loading.deletingHead}
@@ -87,7 +87,8 @@ export const ListPage: React.FC = () => {
             max={list.length - 1}
             type="number"
             placeholder="Введите индекс"
-            value={indexValue}
+            id="index"
+            value={indexValue ?? ''}
             onChange={(e) => setIndexValue(Number(e.currentTarget.value))}
           />
           <Button
@@ -95,13 +96,14 @@ export const ListPage: React.FC = () => {
             extraClass="grid-2"
             isLoader={loading.addingIndex}
             onClick={handleAddAtIndex}
+            disabled={indexValue === undefined}
           />
           <Button
             text="Удалить по индексу"
             extraClass="grid-2"
             isLoader={loading.deletingIndex}
             onClick={handleDeleteAtIndex}
-            disabled={!list.length}
+            disabled={!list.length || indexValue === undefined}
           />
         </form>
         <div className="circles">

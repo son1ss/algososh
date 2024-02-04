@@ -1,0 +1,245 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент Circle корректно рендерится в измененном состоянии 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   modified"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится в изменяющемся состоянии 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   changing"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится в стандартном состоянии 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится пустой 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с isSmall === true 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle  small default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с буквой 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    >
+      A
+    </p>
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с реакт компонентом как head 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  >
+    <span>
+      Компонент
+    </span>
+  </div>
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с реакт компонентом как tail 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  >
+    <span>
+      Компонент
+    </span>
+  </div>
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с строкой head 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head string"
+  >
+    Head
+  </div>
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 element"
+  />
+</div>
+`;
+
+exports[`Компонент Circle корректно рендерится с строкой tail 1`] = `
+<div
+  className="content "
+>
+  <div
+    className="text text_type_input text_color_input mb-4 absolute head element"
+  />
+  <div
+    className="circle   default"
+  >
+    <p
+      className="text text_type_circle text_color_input letter"
+    />
+  </div>
+  <p
+    className="text text_type_input text_color_input mt-4 absolute index"
+  />
+  <div
+    className="text text_type_input text_color_input mt-4 absolute tail30 string"
+  >
+    Tail
+  </div>
+</div>
+`;
