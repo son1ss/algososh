@@ -1,29 +1,31 @@
+import { testUrl } from '../constants/selectors';
+
 describe('Роутинг', () => {
   it('должна корректно переходить на главную страницу', () => {
-    cy.visit('http://localhost:3000');
+    cy.visit(testUrl);
   });
 
   it('должна корректно переходить на страницу строки', () => {
-    cy.visit('http://localhost:3000/recursion');
+    cy.visit(`${testUrl}recursion`);
   });
 
   it('должна корректно переходить на страницу чисел Фибоначчи', () => {
-    cy.visit('http://localhost:3000/fibonacci');
+    cy.visit(`${testUrl}fibonacci`);
   });
 
   it('должна корректно переходить на страницу массивов', () => {
-    cy.visit('http://localhost:3000/sorting');
+    cy.visit(`${testUrl}sorting`);
   });
 
   it('должна корректно переходить на страницу стека', () => {
-    cy.visit('http://localhost:3000/stack');
+    cy.visit(`${testUrl}stack`);
   });
 
   it('должна корректно переходить на страницу очереди', () => {
-    cy.visit('http://localhost:3000/queue');
+    cy.visit(`${testUrl}queue`);
   });
 
   it('должна корректно переходить на страницу списка', () => {
-    cy.visit('http://localhost:3000/list');
+    cy.visit(`${testUrl}list`);
   });
 });

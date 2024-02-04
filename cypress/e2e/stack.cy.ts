@@ -1,4 +1,12 @@
 import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
+import {
+  inputSelector,
+  addButtonSelector,
+  circlesSelector,
+  innerCirclesSelector,
+  deleteButtonSelector,
+  clearButtonSelector,
+} from '../constants/selectors';
 
 describe('Страница стека', () => {
   beforeEach(() => {
@@ -6,22 +14,22 @@ describe('Страница стека', () => {
   });
 
   it('кнопка "Добавить" должна быть неактивной при пустом поле ввода', () => {
-    cy.get('.input-form input').should('be.empty');
-    cy.get('.input-form button:contains("Добавить")').should('be.disabled');
+    cy.get(inputSelector).should('be.empty');
+    cy.get(addButtonSelector).should('be.disabled');
   });
 
   it('правильное добавление элемента в стек', () => {
     const inputValue = 'I1';
 
-    cy.get('.input-form input').type(inputValue);
-    cy.get('.input-form button:contains("Добавить")').click();
+    cy.get(inputSelector).type(inputValue);
+    cy.get(addButtonSelector).click();
 
-    cy.get('.circles')
+    cy.get(circlesSelector)
       .children()
       .should('have.length', 1)
       .first()
       .should('contain.text', inputValue)
-      .find('div[class^="circle"]')
+      .find(innerCirclesSelector)
       .should('satisfy', (elements) => {
         const classList: string[] = Array.from(elements[0].classList);
         return classList.some((name) => name.includes('changing'));
@@ -36,36 +44,36 @@ describe('Страница стека', () => {
   it('правильное удаление элемента из стека', () => {
     const inputValue = 'I1';
 
-    cy.get('.input-form input').type(inputValue);
-    cy.get('.input-form button:contains("Добавить")').click();
+    cy.get(inputSelector).type(inputValue);
+    cy.get(addButtonSelector).click();
 
-    cy.get('.circles').children().should('have.length', 1);
+    cy.get(circlesSelector).children().should('have.length', 1);
 
-    cy.get('.input-form button:contains("Удалить")').click();
+    cy.get(deleteButtonSelector).click();
 
-    cy.get('.circles')
+    cy.get(circlesSelector)
       .children()
       .first()
-      .find('div[class^="circle"]')
+      .find(innerCirclesSelector)
       .should('satisfy', (elements) => {
         const classList: string[] = Array.from(elements[0].classList);
         return classList.some((name) => name.includes('changing'));
       });
-    cy.get('.circles').children().should('have.length', 0);
+    cy.get(circlesSelector).children().should('have.length', 0);
   });
 
   it('правильное поведение кнопки "Очистить"', () => {
     const inputValues = ['I1', 'I2', 'I3'];
 
     inputValues.forEach((value) => {
-      cy.get('.input-form input').type(value);
-      cy.get('.input-form button:contains("Добавить")').click();
+      cy.get(inputSelector).type(value);
+      cy.get(addButtonSelector).click();
     });
 
-    cy.get('.circles').children().should('have.length', inputValues.length);
+    cy.get(circlesSelector).children().should('have.length', inputValues.length);
 
-    cy.get('.input-form button:contains("Очистить")').click();
+    cy.get(clearButtonSelector).click();
 
-    cy.get('.circles').children().should('have.length', 0);
+    cy.get(circlesSelector).children().should('have.length', 0);
   });
 });

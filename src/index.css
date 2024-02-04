@@ -11,3 +11,44 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.input-form {
+  display: flex;
+  gap: 12px
+}
+
+.sort-form {
+  align-items: center;
+}
+
+.grid-form {
+  display: grid;
+  grid-template-columns: 204px repeat(4, 175px);
+  gap: 12px;
+}
+
+.demo-elements {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap:48px
+}
+
+.circles {
+  display: flex;
+  gap: 40px 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 950px;
+}
+
+.columns {
+  display: flex;
+  gap: 40px 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.grid-2 {
+  grid-column: span 2;
+}

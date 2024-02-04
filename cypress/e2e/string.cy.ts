@@ -1,4 +1,5 @@
 import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
+import { inputSelector, circlesSelector, innerCirclesSelector, buttonSelector } from '../constants/selectors';
 
 describe('Страница разворота строки', () => {
   beforeEach(() => {
@@ -6,24 +7,24 @@ describe('Страница разворота строки', () => {
   });
 
   it('кнопка "Рассчитать" должна быть неактивной при пустом поле ввода', () => {
-    cy.get('.input-form input').should('be.empty');
-    cy.get('.input-form button').should('be.disabled');
+    cy.get(inputSelector).should('be.empty');
+    cy.get(buttonSelector).should('be.disabled');
   });
 
   it('строка должна разворачиваться корректно', () => {
     const inputString = 'TestString';
 
-    cy.get('.input-form input').type(inputString);
-    cy.get('.input-form button').click();
+    cy.get(inputSelector).type(inputString);
+    cy.get(buttonSelector).click();
 
-    cy.get('.circles').children().should('have.length', inputString.length);
+    cy.get(circlesSelector).children().should('have.length', inputString.length);
 
     for (let i = 0; i < inputString.length / 2; i++) {
-      cy.get(`.circles`)
+      cy.get(circlesSelector)
         .children()
         .eq(i)
         .should('contain.text', inputString[inputString.length - i - 1])
-        .find('div[class^="circle"]')
+        .find(innerCirclesSelector)
         .should('satisfy', (elements) => {
           const classList: string[] = Array.from(elements[0].classList);
           return classList.some((name) => name.includes('changing'));
@@ -34,12 +35,12 @@ describe('Страница разворота строки', () => {
           return classList.some((name) => name.includes('modified'));
         });
     }
-    cy.get('.circles')
+    cy.get(circlesSelector)
       .children()
       .should('have.length', inputString.length)
       .each((circle) => {
         cy.wrap(circle)
-          .find('div[class^="circle"]')
+          .find(innerCirclesSelector)
           .should('satisfy', (elements) => {
             const classList: string[] = Array.from(elements[0].classList);
             return classList.some((name) => name.includes('modified'));

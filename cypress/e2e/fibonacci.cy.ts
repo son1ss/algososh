@@ -1,4 +1,5 @@
 import { SHORT_DELAY_IN_MS } from '../../src/constants/delays';
+import { inputSelector, circlesSelector, buttonSelector } from '../constants/selectors';
 
 describe('Страница чисел Фибоначчи', () => {
   beforeEach(() => {
@@ -6,19 +7,19 @@ describe('Страница чисел Фибоначчи', () => {
   });
 
   it('кнопка "Рассчитать" должна быть неактивной при пустом поле ввода', () => {
-    cy.get('.input-form input').should('be.empty');
-    cy.get('.input-form button').should('be.disabled');
+    cy.get(inputSelector).should('be.empty');
+    cy.get(buttonSelector).should('be.disabled');
   });
 
   it('числа генерируются корректно', () => {
     const expectedFibonacciSequence = [1, 1, 2, 3, 5];
 
-    cy.get('.input-form input').type('5');
-    cy.get('.input-form button').click();
+    cy.get(inputSelector).type('5');
+    cy.get(buttonSelector).click();
 
     cy.wait(SHORT_DELAY_IN_MS);
 
-    cy.get('.circles')
+    cy.get(circlesSelector)
       .children()
       .should('have.length', expectedFibonacciSequence.length)
       .each((circle, index) => {
