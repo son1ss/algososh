@@ -96,14 +96,14 @@ export const ListPage: React.FC = () => {
             extraClass="grid-2"
             isLoader={loading.addingIndex}
             onClick={handleAddAtIndex}
-            disabled={indexValue === undefined}
+            disabled={indexValue === undefined || indexValue > list.length - 1}
           />
           <Button
             text="Удалить по индексу"
             extraClass="grid-2"
             isLoader={loading.deletingIndex}
             onClick={handleDeleteAtIndex}
-            disabled={!list.length || indexValue === undefined}
+            disabled={!list.length || indexValue === undefined || indexValue > list.length - 1}
           />
         </form>
         <div className="circles">
