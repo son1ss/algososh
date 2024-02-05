@@ -5,4 +5,3 @@ export const innerCirclesSelector = 'div[class^="circle"]';
 export const buttonSelector = '.input-form button';
 export const deleteButtonSelector = '.input-form button:contains("Удалить")';
 export const clearButtonSelector = '.input-form button:contains("Очистить")';
-export const testUrl = 'http://localhost:3000/';

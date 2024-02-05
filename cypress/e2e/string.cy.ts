@@ -3,7 +3,7 @@ import { inputSelector, circlesSelector, innerCirclesSelector, buttonSelector } 
 
 describe('Страница разворота строки', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/recursion');
+    cy.visit('/recursion');
   });
 
   it('кнопка "Рассчитать" должна быть неактивной при пустом поле ввода', () => {

@@ -12,7 +12,7 @@ const smallCircleSelector = 'div[class*="circle_small"]';
 
 describe('Страница связанного списка', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/list');
+    cy.visit('/list');
     const inputValues = ['DI1', 'DI2', 'DI3'];
     inputValues.forEach((value) => {
       cy.get(valueInputSelector).type(value);

@@ -6,5 +6,6 @@ export default defineConfig({
       // implement node event listeners here
     },
     experimentalRunAllSpecs: true,
+    baseUrl: 'http://localhost:3000',
   },
 });

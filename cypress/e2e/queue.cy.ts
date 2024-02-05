@@ -10,7 +10,7 @@ import {
 
 describe('Страница очереди', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/queue');
+    cy.visit('/queue');
   });
 
   it('кнопка "Добавить" должна быть неактивной при пустом поле ввода', () => {

@@ -3,7 +3,7 @@ import { inputSelector, circlesSelector, buttonSelector } from '../constants/sel
 
 describe('Страница чисел Фибоначчи', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/fibonacci');
+    cy.visit('/fibonacci');
   });
 
   it('кнопка "Рассчитать" должна быть неактивной при пустом поле ввода', () => {

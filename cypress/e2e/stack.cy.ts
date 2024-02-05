@@ -10,7 +10,7 @@ import {
 
 describe('Страница стека', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000/stack');
+    cy.visit('/stack');
   });
 
   it('кнопка "Добавить" должна быть неактивной при пустом поле ввода', () => {
