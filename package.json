@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "cypress": "cypress open cache clear",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,6 +45,9 @@
     ]
   },
   "devDependencies": {
-    "@types/react-router-dom": "^5.3.3"
+    "@types/react-router-dom": "^5.3.3",
+    "@types/react-test-renderer": "^17.0.2",
+    "cypress": "^13.6.4",
+    "react-test-renderer": "^17.0.2"
   }
 }
